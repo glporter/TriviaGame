@@ -103,8 +103,9 @@ function gameOver() {
     stopTimer();
     hidePageItem("question-holder");
     showPageItem("question-results");
+    unanswered = totalQuestions - (correctAns + incorrectAns);
     showResults();
-    unanswered
+
     //  $(".container").hidePage();
 } //end gameOver
 
