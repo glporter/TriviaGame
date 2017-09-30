@@ -1,143 +1,37 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="UTF-8">
 
     <script LANGUAGE="JavaScript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Totally Trivial Trivia</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-    <style>
-        body {
-            background-image: url("assets/images/busy-pattern.jpg");
-        }
-    </style>
-    <script>
-        $(document).ready(function() {
-            hidePageItem("question-holder");
-            hidePageItem("question-results");
-            hidePageItem("question-holder");
-        });
-    </script>
-
 </head>
+<style>
+    body {
+        background-image: url("assets/images/busy-pattern.jpg");
+    }
+</style>
 
 <body>
 
-    <div class="container">
-        <div>
-            <h1>Totally Trivial Trivia!</h1>
+    <div id="wrapper">
+        <h1>Totally Trivial Trivia!</h1>
+        <div id="subwrapper">
+            <button id="start">Start</button>
         </div>
-        <button class="startBtn" onclick="startGame()">Start</button>
-        <!-- <button class="startBtn" onclick="startGame()">Start</button>  -->
-        <div id="count-down">
-        </div>
-        <div class="question-holder">
-            <form>
-
-                <br>
-                <p>What was the first full length CGI Movie?</p>
-                <label class="radio-inline-1">
-                            <input type="radio" name="optradio-1" value="1" onclick="processAnswer(this)">A Bug's Life 
-                          </label>
-                <label class="radio-inline-1">
-                            <input type="radio" name="optradio-1" value="2" onclick="processAnswer(this)">Monsters Inc.
-                          </label>
-                <label class="radio-inline-1">
-                            <input type="radio" name="optradio-1" value="3" onclick="processAnswer(this)">Toy Story
-                          </label>
-                <label class="radio-inline-1">
-                          <input type="radio" name="optradio-1" value="4" onclick="processAnswer(this)">THe Lion King
-                        </label>
-                <br>
-                <br>
-                <p>Which of these IS NOT a Spice Girl?</p>
-                <label class="radio-inline-2">
-                            <input type="radio" name="optradio-2" value="1"  onclick="processAnswer(this)">Sporty Spice
-                          </label>
-                <label class="radio-inline-2">
-                            <input type="radio" name="optradio-2" value="2"  onclick="processAnswer(this)"> Fred Spice
-                          </label>
-                <label class="radio-inline-2">
-                            <input type="radio" name="optradio-2" value="3"  onclick="processAnswer(this)">Scary Spice
-                          </label>
-                <label class="radio-inline-2">
-                          <input type="radio" name="optradio-2" value="4"  onclick="processAnswer(this)">Posh Spice
-                        </label>
-                <br>
-                <br>
-                <p>Which NBA team won the most titles in the 90s</p>
-                <label class="radio-inline-3">
-                        <input type="radio" name="optradio-3" value="1" onclick="processAnswer(this)">New York Knicks
-                      </label>
-                <label class="radio-inline-3">
-                        <input type="radio" name="optradio-3" value="2" onclick="processAnswer(this)">Portland Trailblazers
-                      </label>
-                <label class="radio-inline-3">
-                        <input type="radio" name="optradio-3" value="3" onclick="processAnswer(this)">Los Angeles Lakers
-                      </label>
-                <label class="radio-inline-3">
-                      <input type="radio" name="optradio-3" value="4" onclick="processAnswer(this)">Chicago Bulls
-                    </label>
-                <br>
-                <br>
-                <p>Which group released the hit song, "Smells Like Teen Spirit?</p>
-                <label class="radio-inline-4">
-                       <input type="radio" name="optradio-4" value="1" onclick="processAnswer(this)">Nirvana
-                      </label>
-                <label class="radio-inline-4">
-                       <input type="radio" name="optradio-4" value="2" onclick="processAnswer(this)">Backstreet Boys
-                       </label>
-                <label class="radio-inline-4">
-                       <input type="radio" name="optradio-4" value="3" onclick="processAnswer(this)">The Offspring
-                       </label>
-                <label class="radio-inline-4">
-                       <input type="radio" name="optradio-4" value="4" onclick="processAnswer(this)">No Doubt
-                     </label>
-                <br>
-                <br>
-                <p>Who is credited with inventing the first mechanical computer?</p>
-                <label class="radio-inline-5">
-                            <input type="radio" name="optradio-5" value="1" onclick="processAnswer(this)">Bill Gates
-                           </label>
-                <label class="radio-inline-5">
-                            <input type="radio" name="optradio-5" value="2" onclick="processAnswer(this)">Steve Jobs
-                            </label>
-                <label class="radio-inline-5">
-                            <input type="radio" name="optradio-5" value="3" onclick="processAnswer(this)">Mark Zuckerburg
-                            </label>
-                <label class="radio-inline-5">
-                            <input type="radio" name="optradio-5" value="4" onclick="processAnswer(this)">Charles Babbage
-                          </label>
-            </form>
-        </div>
-
-        <div class="question-results">
-            <br>
-            <br>
-            <br>
-            <br>
-            <p>All Done!</p>
-            <br>
-            <br>
-            <div id="correct-answers"></div>
-            <br>
-            <br>
-            <div id="incorrect-answers"></div>
-            <br>
-            <br>
-            <div id="unanswered"></div>
-        </div>
-
-        <script src="assets/javascript/game.js"></script>
+    </div>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 </body>
 

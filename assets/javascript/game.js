@@ -1,129 +1,148 @@
 // TRIVIA GAME
 //  ==========================================================
 
-var counter = 0;
-var countdown = 20;
-var intervalID;
-var correctAns = 0;
-var incorrectAns = 0;
-var unanswered = 0;
-var totalQuestions = 5;
-var timeHasExpired = false;
-var triviaQuestion = {
 
-    aQuestion: "What was the first full length CGI movie?",
-    possibleAnswers: ["A Bug's Life", "Monsters", "Toy Story", "The Lion King"],
-    answer: 1
-}
+$('#start').on('click', function() {
+    //$('#subwrapper').remove();
+    game.start();
+})
 
-
-//startCountDown();
+$(document).on('click', '#end', function() {
+    game.done();
+})
 
 
 
-function startGame() {
-    //alert("Time for the game to start");
-    hidePageItem("startBtn");
-    showPageItem("question-holder");
+var questions = [{
+    question: "What was the first full length CGI movie?",
+    answers: ["A Bug's Life", "Monsters Inc.", "Toy Story", "The Lion King"],
+    correctAnswer: "Toy Story"
+}, {
+    question: "Which of these IS NOT a name of one of the Spice Girls?",
+    answers: ["Sporty Spice", "Fred Spice", "Scary Spice", "Posh Spice"],
+    correctAnswer: "Fred Spice"
+}, {
+    question: "Which NBA team won the most titles in the 90s?",
+    answers: ["New York Knicks", "Portland Trailblazers", "Los Angeles Lakers", "Chicago Bulls"],
+    correctAnswer: "Portland Trailblazers"
+}, {
+    question: "Which group released the hit song, Smells Like Teen Spirit?",
+    answers: ["Nirvana", "Backstreet Boys", "The Offspring", "No Doubt"],
+    correctAnswer: "Nirvana"
+}, {
+    question: "Who is credited with inventing the first mechanical computer?",
+    answers: ["Bill Gates", "Steve Jobs", "Mark Zuckerburg", "Charles Babbage"],
+    correctAnswer: "Charles Babbage"
+}, {
+    question: "Which popular Disney movie featured the song, Circle of Life?",
+    answers: ["Aladdin", "Hercules", "Malan", "The Lion King"],
+    correctAnswer: "The Lion King"
+}, {
+    question: "What was Doug's best friends name?",
+    answers: ["Skeeter", "Mark", "Zack", "Cody"],
+    correctAnswer: "Cody"
+}, {
+    question: "What wasa the name of the principal at Bayside High in Saved by the Bell?",
+    answers: ["Mr. Zhou", "Mr. Driggers", "Mr. Belding", "Mr. Page"],
+    correctAnswer: "Mr. Belding"
+}];
 
-    startCountDown();
-    //  document.URL("trivia.html");
-    //  document.load();
-    // $(this).parents(".container").hide("slow");
-}
 
-
-
-function processAnswer(anObject) {
-    if (!timeHasExpired) {
-        //alert("A question was answered");
-        // console.log("Question: " + anObject.name);
-        //console.log("Value: " + anObject.value);
-        //console.log(anObject.name === "optradio-1");
-        //console.log(anObject.value === "3");
-        if ((anObject.name === "optradio-1") && (anObject.value === "3")) {
-            // console.log(anObject.name === "optradio-1");
-            // console.log(anObject.value === "3");
-            correctAns++;
-        } else
-        if ((anObject.name === "optradio-2") && (anObject.value === "2")) {
-            correctAns++;
-        } else
-        if ((anObject.name === "optradio-3") && (anObject.value === "2")) {
-            correctAns++;
-        } else
-        if ((anObject.name === "optradio-4") && (anObject.value === "1")) {
-            correctAns++;
-        } else
-        if ((anObject.name === "optradio-5") && (anObject.value === "4")) {
-            correctAns++;
-        } else {
-            incorrectAns++;
+var game = {
+    correct: 0,
+    incorrect: 0,
+    counter: 30,
+    countdown: function() {
+        game.counter--;
+        $('#counter').html(game.counter);
+        if (game.counter < 0) {
+            console.log("Time is up!");
+            game.done();
         }
-    } //check timeHasExpired
+    },
+    start: function() {
+        timer = setInterval(game.countdown, 1000);
+        $('#subwrapper').prepend('<h2>Time Remaining: <span id="counter">0</span> Seconds</h2>');
+        $('#start').remove();
+        for (var i = 0; i < questions.length; i++) {
+            $('#subwrapper').append('<h2>' + questions[i].question + '</h2>');
+            for (var j = 0; j < questions[i].answers.length; j++) {
+                $("#subwrapper").append("<input type= 'radio' name='question-" + i + "' value='" + questions[i].answers[j] + "'>" + questions[i].answers[j]);
+            } //end for j
+        } //end for i
+        $('#subwrapper').append('<br><br>');
+        $('#subwrapper').append('<button id="end">DONE</button');
 
-} //end processAnswer
+    }, //end start
+    done: function() {
+        // alert("Game over!!!!");
+        $.each($('input[name="question-0"]:checked'), function() {
+            if ($(this).val() == questions[0].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-1"]:checked'), function() {
+            if ($(this).val() == questions[1].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-2"]:checked'), function() {
+            if ($(this).val() == questions[2].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-3"]:checked'), function() {
+            if ($(this).val() == questions[3].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-4"]:checked'), function() {
+            if ($(this).val() == questions[4].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-5"]:checked'), function() {
+            if ($(this).val() == questions[5].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-6"]:checked'), function() {
+            if ($(this).val() == questions[6].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
+        $.each($('input[name="question-7"]:checked'), function() {
+            if ($(this).val() == questions[7].correctAnswer) {
+                game.correct++;
+            } else {
+                game.incorrect++;
+            }
+        });
 
+        this.result();
+    },
 
-function hidePageItem(itemToHide) {
-    //  var x = document.getElementById('trivia-game');
-    //  x.style.display = 'none';
-    //$(".startBtn").hide("slow");
-    $("." + itemToHide).hide("fast");
+    result: function() {
+        clearInterval(timer);
+        $('#subwrapper h2').remove();
 
-}
-
-
-function showPageItem(itemToShow) {
-    //  var x = document.getElementById('trivia-game');
-    //  x.style.display = 'none';
-    //$(".startBtn").hide("slow");
-    $("." + itemToShow).show("fast");
-
-}
-
-function startCountDown() {
-    intervalId = setInterval(count, 1000);
-}
-
-function count() {
-    //decrement countdown by 1, 
-    countdown--;
-    if (countdown >= 0) {
-        $("#count-down").html("Time Remaining: " + countdown.toString() + " seconds");
-    } //endif
-    else {
-        gameOver();
+        $('#subwrapper').html("<h2>All done!</h2>");
+        $('#subwrapper').append("<h3>Correct Answers: " + this.correct + "</h3>");
+        $('#subwrapper').append("<h3>InCorrect Answers: " + this.incorrect + "</h3>");
+        $('#subwrapper').append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
     }
-}
-
-function gameOver() {
-    //alert("Game Over.....");
-    timeHasExpired = true;
-    stopTimer();
-    hidePageItem("question-holder");
-    showPageItem("question-results");
-    unanswered = totalQuestions - (correctAns + incorrectAns);
-    showResults();
-
-    //  $(".container").hidePage();
-} //end gameOver
-
-function stopTimer() {
-
-    //   console.log("stopping");
-    clearInterval(intervalId);
-
-}
-
-function showResults() {
-    $("#correct-answers").html("Correct answers: " + correctAns.toString());
-    $("#incorrect-answers").html("Incorrect answers: " + incorrectAns.toString());
-    $("#unanswered").html("Unanswered: " + unanswered.toString());
-} // end showResults()
-
-
-function checkUnanswered() {
-
-    //$(".radio-inline-5").
 }
